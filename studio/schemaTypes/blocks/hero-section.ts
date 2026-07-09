@@ -173,6 +173,7 @@ export const heroSectionType = defineType({
       type: 'image',
       group: 'background',
       hidden: ({parent}) => parent?.backgroundType !== 'image',
+      options: { hotspot: true },
     }),
     defineField({
       name: 'backgroundVideo',
