@@ -1,3 +1,4 @@
+
 import {Image as SanityImg} from 'next-sanity/image'
 import {stegaClean} from 'next-sanity'
 import {urlFor} from '@/sanity/lib/image'
@@ -70,12 +71,17 @@ function FullWidthHero({data}: {data: HeroSectionData}) {
       {/* Background image */}
       {bgType === 'image' && data.backgroundImage?.asset && (
         <SanityImg
-          src={urlFor(data.backgroundImage).width(1920).fit('max').url()}
+          src={urlFor(data.backgroundImage).width(1920).height(1080).fit('crop').url()}
           alt=""
           fill
           sizes="100vw"
           quality={80}
           className="object-cover"
+          style={{
+            objectPosition: data.backgroundImage.hotspot
+              ? `${(data.backgroundImage.hotspot.x ?? 0.5) * 100}% ${(data.backgroundImage.hotspot.y ?? 0.5) * 100}%`
+              : 'center'
+          }}
           priority
         />
       )}
