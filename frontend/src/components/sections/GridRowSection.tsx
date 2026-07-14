@@ -63,10 +63,9 @@ export function GridRowSection({data}: {data: GridRowData}) {
             {data.columns?.map((column, colIdx) => {
               const valign = VALIGN_MAP[stegaClean(column.verticalAlign) || 'top'] || ''
               return (
-                <ScrollReveal key={column._key} delay={colIdx * STAGGER_MS}>
+                <ScrollReveal key={column._key} delay={colIdx * STAGGER_MS} className={valign}>
                   <BlockStylesWrapper
                     blockStyles={column.blockStyles}
-                    className={valign}
                   >
                     {column.content?.map((block) => (
                       <ContentRenderer key={block._key} block={block} />
